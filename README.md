@@ -1,4 +1,4 @@
-**deface_checker**
+#deface_checker
 
 A tool for checking integrity of the site in order to monitor any defacement or unauthorized changes in the main or landing page.
 
@@ -17,7 +17,7 @@ A tool for checking integrity of the site in order to monitor any defacement or 
 •	Create a Telegram bot and a Telegram group and add the information to the source code.
 •	Run the code
 
-****How to tune?****
+**How to tune?**
 
 For every site there could be a "whitelist_.txt" file inside the created folder for each site.
 It is used for minimizing false positives before sending pages to compare.
