@@ -49,7 +49,7 @@ Any html tag or content could be added to this file to improve the result.
 ### 2 - Removing value of a tag via regex:
 ---
 #### Response example:
-*<img src="WebResource.axd?id=11111">*
+*&lt;img src="WebResource.axd?id=11111"&gt;*
 
 #### Rule format defined in “urls.txt”:
 
@@ -68,7 +68,7 @@ Any html tag or content could be added to this file to improve the result.
 ### 3 - Removing strings and var between tags:
 ---
 #### Response example:
-*<script type="text/javascript"> var sd_persiandatepicker_MAXDATE = new Date(2022,5,9); </script>*
+*&lt;script type="text/javascript"> var sd_persiandatepicker_MAXDATE = new Date(2022,5,9); &lt;/script>*
 
 #### Rule format defined in “urls.txt”:
 *tag_name,:string,regexstring*
@@ -84,7 +84,7 @@ Any html tag or content could be added to this file to improve the result.
 ### 4 - Removing values from some attributes that can not be used with Rule #1:
 ---
 #### Response example:
-*<img alt="SMALL" src="https://example.com/pic.jpg" class=”in-press press-wired”>*
+*&lt;img alt="SMALL" src="https://example.com/pic.jpg" class=”in-press press-wired”&gt;*
 
 #### Rule format to define in “urls.txt”:
 *ag_name,attribute_name:attribute_value string*
