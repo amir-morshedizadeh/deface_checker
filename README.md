@@ -4,12 +4,12 @@ A tool for checking integrity of the site in order to monitor any defacement or 
 
 ## How it works?
 
-* •	It sends a request to the URL then saves the response in “page.txt”
-•	After reaching to the end of URLs in “urls.txt”, it would send a request again and saves the response in the memory.
-•	Both responses are compared using “diff-match-patch” library created by Google.
-•	If any changes like adding or removing tags, strings and …, are detected between these responses, it makes an HTML file with added and removed parts with highlighted colors.
-•	The code sends the generated HTML file via a Telegram Bot (or Bale Bot) to a Telegram group.
-•	Admins are joined to the group and could check the HTML file for any changes within the site.
+* It sends a request to the URL then saves the response in “page.txt”
+*	After reaching to the end of URLs in “urls.txt”, it would send a request again and saves the response in the memory.
+*	Both responses are compared using “diff-match-patch” library created by Google.
+*	If any changes like adding or removing tags, strings and …, are detected between these responses, it makes an HTML file with added and removed parts with highlighted colors.
+*	The code sends the generated HTML file via a Telegram Bot (or Bale Bot) to a Telegram group.
+*	Admins are joined to the group and could check the HTML file for any changes within the site.
 
 ## Steps to run
 
