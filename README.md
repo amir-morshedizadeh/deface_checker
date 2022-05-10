@@ -13,9 +13,9 @@ A tool for checking integrity of the site in order to monitor any defacement or 
 
 ## Steps to run
 
-•	Create a “urls.txt” file within the “c:\output2” or change the folder within the code.
-•	Create a Telegram bot and a Telegram group and add the information to the source code.
-•	Run the code
+*	Create a “urls.txt” file within the “c:\output2” or change the folder within the code.
+*	Create a Telegram bot and a Telegram group and add the information to the source code.
+*	Run the code
 
 ## How to tune?
 
