@@ -30,16 +30,16 @@ Any html tag or content could be added to this file to improve the result.
 ### 1 - Removing value of an attribute:
 
 Response example:
-<input id="__VIEWSTATE" name="__VIEWSTATE" type="hidden"  value="31DgVHUW6lLKGiKNEH93">
+> <input id="__VIEWSTATE" name="__VIEWSTATE" type="hidden"  value="31DgVHUW6lLKGiKNEH93">
 
 Rule format defined in “urls.txt”:
-tag_name,attribute_name:attribute_value
+> tag_name,attribute_name:attribute_value
 
 Exception example:
-input,id:__VIEWSTATE
+> input,id:__VIEWSTATE
 
 Output:
-Input tag containing “id= __VIEWSTATE” is removed from the response before compare.
+> Input tag containing “id= __VIEWSTATE” is removed from the response before compare.
 
 ### 2 - Removing value of a tag via regex:
 
@@ -62,30 +62,30 @@ Output:
 ### 3 - Removing strings and var between tags:
 
 Response example:
-<script type="text/javascript"> var sd_persiandatepicker_MAXDATE = new Date(2022,5,9); </script>
+> <script type="text/javascript"> var sd_persiandatepicker_MAXDATE = new Date(2022,5,9); </script>
 
 Rule format defined in “urls.txt”:
-tag_name,:string,regexstring
+> tag_name,:string,regexstring
 
 Exception example:
-tag_name,:var sd_persiandatepicker_MAXDATE .*?\);,regexstring
+> tag_name,:var sd_persiandatepicker_MAXDATE .*?\);,regexstring
 
 Output:
-SCRIPT tag containing “sd_persiandatepicker_MAXDATE” string is removed from the response before compare.
+> SCRIPT tag containing “sd_persiandatepicker_MAXDATE” string is removed from the response before compare.
 
 ### 4 - Removing values from some attributes that can not be used with Rule #1:
 
 Response example:
-<img alt="SMALL" src="https://example.com/pic.jpg" class=”in-press press-wired”>
+> <img alt="SMALL" src="https://example.com/pic.jpg" class=”in-press press-wired”>
 
 Rule format to define in “urls.txt”:
-ag_name,attribute_name:attribute_value string
+> ag_name,attribute_name:attribute_value string
 
 Exception example defined in “urls.txt:
-div,class:in-press press-wired
+> div,class:in-press press-wired
 
 Output:
-IMG tag containing “class= in-press press-wired” is removed from the response before compare.
+> IMG tag containing “class= in-press press-wired” is removed from the response before compare.
 
 
 
