@@ -30,13 +30,13 @@ Any html tag or content could be added to this file to improve the result.
 ### 1 - Removing value of an attribute:
 
 #### Response example:
-> <input id="__VIEWSTATE" name="__VIEWSTATE" type="hidden"  value="31DgVHUW6lLKGiKNEH93">
+*<input id="__VIEWSTATE" name="__VIEWSTATE" type="hidden"  value="31DgVHUW6lLKGiKNEH93">*
 
 #### Rule format defined in “urls.txt”:
 > tag_name,attribute_name:attribute_value
 
 #### Exception example:
-> input,id:__VIEWSTATE
+> input,id:__VIEWSTAT
 
 #### Output:
 > Input tag containing “id= __VIEWSTATE” is removed from the response before compare.
