@@ -45,6 +45,7 @@ Any html tag or content could be added to this file to improve the result.
 
 
 
+
 ### 2 - Removing value of a tag via regex:
 ---
 #### Response example:
@@ -63,6 +64,7 @@ Any html tag or content could be added to this file to improve the result.
 
 
 
+
 ### 3 - Removing strings and var between tags:
 ---
 #### Response example:
@@ -75,6 +77,7 @@ Any html tag or content could be added to this file to improve the result.
 *tag_name,:var sd_persiandatepicker_MAXDATE .*?\);,regexstring*
 
 *SCRIPT tag containing “sd_persiandatepicker_MAXDATE” string is removed from the response before compare.*
+
 
 
 
