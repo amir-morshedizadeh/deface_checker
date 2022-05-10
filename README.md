@@ -44,16 +44,20 @@ Input tag containing “id= __VIEWSTATE” is removed from the response before c
 ### 2 - Removing value of a tag via regex:
 
 Response example:
-<img src="WebResource.axd?id=11111">
+
+> <img src="WebResource.axd?id=11111">
 
 Rule format defined in “urls.txt”:
-tag_name,attribute_name:attribute_value,regex
+
+> tag_name,attribute_name:attribute_value,regex
 
 Exception example:
-img,src:WebResource.axd,regex
+
+> img,src:WebResource.axd,regex
 
 Output:
-IMG tag containing “src= WebResource.axd?id=11111” is removed from the response before compare.
+
+> IMG tag containing “src= WebResource.axd?id=11111” is removed from the response before compare.
 
 ### 3 - Removing strings and var between tags:
 
