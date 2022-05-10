@@ -27,6 +27,8 @@ Any html tag or content could be added to this file to improve the result.
 
 ## There are 4 different types of defining exceptions in the "whitelist_.txt" file:
 
+
+
 ### 1 - Removing value of an attribute:
 ---
 #### Response example:
@@ -40,6 +42,8 @@ Any html tag or content could be added to this file to improve the result.
 
 #### Output:
 *Input tag containing “id= __VIEWSTATE” is removed from the response before compare.*
+
+
 
 ### 2 - Removing value of a tag via regex:
 ---
@@ -57,6 +61,8 @@ Any html tag or content could be added to this file to improve the result.
 #### Output:
 *IMG tag containing “src= WebResource.axd?id=11111” is removed from the response before compare.*
 
+
+
 ### 3 - Removing strings and var between tags:
 ---
 #### Response example:
@@ -69,6 +75,8 @@ Any html tag or content could be added to this file to improve the result.
 *tag_name,:var sd_persiandatepicker_MAXDATE .*?\);,regexstring*
 
 *SCRIPT tag containing “sd_persiandatepicker_MAXDATE” string is removed from the response before compare.*
+
+
 
 ### 4 - Removing values from some attributes that can not be used with Rule #1:
 ---
