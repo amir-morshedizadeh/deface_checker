@@ -45,9 +45,9 @@ Any html tag or content could be added to this file to improve the result.
 
 #### Response example:
 *<img src="WebResource.axd?id=11111">*
-
+---
 #### Rule format defined in “urls.txt”:
-
+---
 *tag_name,attribute_name:attribute_value,regex*
 
 #### Exception example:
