@@ -33,7 +33,7 @@ Any html tag or content could be added to this file to improve the result.
 *<input id="__VIEWSTATE" name="__VIEWSTATE" type="hidden"  value="31DgVHUW6lLKGiKNEH93">*
 
 #### Rule format defined in “urls.txt”:
-> tag_name,attribute_name:attribute_value
+*tag_name,attribute_name:attribute_value*
 
 #### Exception example:
 > input,id:__VIEWSTAT
