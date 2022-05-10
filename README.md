@@ -21,7 +21,7 @@ A tool for checking integrity of the site in order to monitor any defacement or 
 
 For every site there could be a "whitelist_.txt" file inside the created folder for each site.
 It is used for minimizing false positives before sending pages to compare.
-For example, response of a server may contain a VIEWSTATE value for every response, so we need to remove VIEWSTATE value before comparing for a better result to trust.
+For example, response of a server may contain a VIEWSTATE value for every response, so we need to remove VIEWSTATE value before comparing for a more reliable result.
 Any html tag or content could be added to this file to improve the result.
 
 
