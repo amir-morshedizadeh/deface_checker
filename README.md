@@ -97,5 +97,4 @@ Any html tag or content could be added to this file to improve the result.
 
 
 
-Note
-True Negative
+> I love poll request.
