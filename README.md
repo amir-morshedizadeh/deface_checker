@@ -1,7 +1,9 @@
 **deface_checker**
+
 A tool for checking integrity of the site in order to monitor any defacement or unauthorized changes in the main or landing page.
 
 **How it works?**
+
 •	It sends a request to the URL then saves the response in “page.txt”
 •	After reaching to the end of URLs in “urls.txt”, it would send a request again and saves the response in the memory.
 •	Both responses are compared using “diff-match-patch” library created by Google.
@@ -10,11 +12,13 @@ A tool for checking integrity of the site in order to monitor any defacement or 
 •	Admins are joined to the group and could check the HTML file for any changes within the site.
 
 **Steps to run**
+
 •	Create a “urls.txt” file within the “c:\output2” or change the folder within the code.
 •	Create a Telegram bot and a Telegram group and add the information to the source code.
 •	Run the code
 
 **How to tune?**
+
 For every site there could be a "whitelist_.txt" file inside the created folder for each site.
 It is used for minimizing false positives before sending pages to compare.
 For example, response of a server may contain a VIEWSTATE value for every response, so we need to remove VIEWSTATE value before comparing for a better result to trust.
