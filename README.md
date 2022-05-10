@@ -40,14 +40,14 @@ Any html tag or content could be added to this file to improve the result.
 
 #### Output:
 *Input tag containing “id= __VIEWSTATE” is removed from the response before compare.*
-
+---
 ### 2 - Removing value of a tag via regex:
 
 #### Response example:
 *<img src="WebResource.axd?id=11111">*
----
+
 #### Rule format defined in “urls.txt”:
----
+
 *tag_name,attribute_name:attribute_value,regex*
 
 #### Exception example:
@@ -56,7 +56,7 @@ Any html tag or content could be added to this file to improve the result.
 
 #### Output:
 *IMG tag containing “src= WebResource.axd?id=11111” is removed from the response before compare.*
-
+---
 ### 3 - Removing strings and var between tags:
 
 #### Response example:
@@ -69,7 +69,7 @@ Any html tag or content could be added to this file to improve the result.
 *tag_name,:var sd_persiandatepicker_MAXDATE .*?\);,regexstring*
 
 *SCRIPT tag containing “sd_persiandatepicker_MAXDATE” string is removed from the response before compare.*
-
+---
 ### 4 - Removing values from some attributes that can not be used with Rule #1:
 
 #### Response example:
