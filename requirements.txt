@@ -1,0 +1,4 @@
+beautifulsoup4==4.11.1
+diff_match_patch==20200713
+requests==2.27.1
+urllib3==1.26.13
