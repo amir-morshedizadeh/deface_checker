@@ -1,7 +1,8 @@
-# bc7db4fd365!/usr/bin/python3
-# Author: Amir Morshedizadeh & Ali Ghayoumi
-# Copywriter: Application Security Team @ SADAD Informatics Corporation 2022
-from asyncio import events
+"""
+Author: Amir Morshedizadeh
+Email: morshedizadeh@gmail.com
+"""
+
 import diff_match_patch as dmp_module
 import re
 import time
@@ -9,38 +10,36 @@ import requests
 from urllib3.util.retry import Retry
 from requests.adapters import HTTPAdapter
 import logging
-from os.path import exists
 import os
 from urllib.parse import urlparse
 import urllib3
 from bs4 import BeautifulSoup
-from concurrent.futures import ThreadPoolExecutor
-import threading
 import html
 from urllib3.connectionpool import xrange
 import uuid
 import glob
 
-urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
-telegram_auth_token = "632450292:APZLrOJJptfjQfgjOrTDfL9OnPl5rGGt16zZr1bW"
-telegram_group_id_defacement = "7784145"
-telegram_group_id_unavailable = "1477573755"
+"""
+I used Bale as my messenger. Bale Messenger uses Telegram API.
+You could use Telegram just by replacing api.telegram.org instead of tapi.bale.ai in the following lines.
+"""
+telegram_auth_token = "PUT-YOUR-TELEGRAM-TOKEN-HERE"
+telegram_group_id_defacement = "PUT-YOUR-TELEGRAM-GROUP-ID-HERE"
+telegram_group_id_unavailable = "PUT-YOUR-TELEGRAM-GROUP-ID-HERE"
+base_dir = "PROJECT-DIRECTORY"
 telegram_api_url = f"https://tapi.bale.ai/bot{telegram_auth_token}/sendMessage"
 headers = {'Content-Type': 'application/json', 'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.119 Safari/537.36'}
-base_dir = "E:\\root\\"
 user_agent = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.119 Safari/537.36'}
 websites = []
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
+# Main
 def main():
     setup()
     while True:
         for website in websites:
             time.sleep(2.3)
-            #threads = []
-            #with ThreadPoolExecutor(max_workers=1) as executor:
-            #    threads.append(executor.submit(send_req, website))
             send_req(website)
-
 
 def requests_retry_session(retries=2, backoff_factor=5, session=None):
     session = session or requests.Session()
@@ -50,7 +49,7 @@ def requests_retry_session(retries=2, backoff_factor=5, session=None):
     session.mount('https://', adapter)
     return session
 
-
+# Makes and checks required files and directories for every url in the "urls.txt".
 def setup():
     try:
         session = requests_retry_session(retries=2)
@@ -83,10 +82,10 @@ def setup():
     except BaseException as err:
         print("setup: "+str(err))
 
-
+# Sends alerts to your Telegram group about any changes in the site.
 def send_message_for_defacement(msg):
     """
-    + Sends "msg" via a Telegram Bot to a Telegram Group for any defacement alarm
+    Sends "msg" via a Telegram Bot to a Telegram Group for any defacement alarm
     """
     session = requests_retry_session(retries=5)
     try:
@@ -95,10 +94,10 @@ def send_message_for_defacement(msg):
     except BaseException as err:
         print("send_message_for_defacement():  " + str(err))
 
-
+# Sends alerts to your Telegram group about service unavailability.
 def send_message_for_services(msg):
     """
-    + Sends "msg" via a Telegram Bot to a Telegram Group for monitoring service availability
+    Sends "msg" via a Telegram Bot to a Telegram Group for monitoring service availability.
     """
     session = requests_retry_session(retries=5)
     try:
@@ -107,7 +106,7 @@ def send_message_for_services(msg):
     except BaseException as err:
         print("send_message_for_services:  " + str(err))
 
-
+# If any changes occurred, it looks at "whitelist.txt" in order to apply exceptions defined in the file to reduce false positives.
 def filtering(text, url_dir):
     soup__tmp = BeautifulSoup(text, 'html.parser', multi_valued_attributes=None)
     if exists(url_dir + "\\whitelist_" + ".txt"):
@@ -142,14 +141,13 @@ def filtering(text, url_dir):
     text = str(soup__tmp.prettify())
     return text
 
-
+# Sends the request then saves the response to the file.
 def send_req(website):
     """
-    + Sends the request to the site and saves the response(status code 200) into the "text2" variable.
-    + If the response is other than 200, it sends received code via "send_message_for_services()" to the Telegram bot.
-    + Reads "page.txt" and saves the content to "text1" variable.
-    + Compares "new.txt" known as "text1" WITH the latest response of the site known as "text2".
-    + If they are not same, it sends both "text1" and "text2" to "compare()" to find all changes of the site.
+    Sends the request to the site and saves the response(if the code is 200, otherwise it sends received code via "send_message_for_services()" to the Telegram group that can be used for NOC monitoring.) into the "text2" variable.
+    Reads "page.txt" and saves its content to "text1" variable.
+    Compares "page.txt" known as "text1" with the latest response of the site known as "text2".
+    If they are not same, it sends both "text1" and "text2" to "compare()" to find all changes of the site.
     """
     url_dir = website[0]
     url = website[1]
@@ -173,15 +171,14 @@ def send_req(website):
     except BaseException as err:
         print("send_req():"+str(err) + " URL=" + url)
 
-
+# Finds final changes then sends those changes to the Telegram group.
 def compare(text1, text2, url_dir, url):
     """
-    + At first it sends "text1" and "text2" to filtering() for applying exceptions(False Positive) for each site.
-    + Then it compares "text11" and "text22" for the equality
-    + If not same, it means there are some changes.
-    + "diff_match_patch" python library is used for finding ADDED and REMOVED parts of changes with the highlighted color.
-    + Red highlight is used for showing REMOVED parts and Green highlight is used for ADDED parts.
-    + The result of the compare is saved to a random HTML file for sending to the Telegram group via the Telegram Bot.
+    At the first it sends "text1" and "text2" to "filtering()" for applying exceptions(reducing what you do not want to be considered as a threat) for the site, then compares.
+    If the result is not same, it means there are some changes.
+    "diff_match_patch" python library is used for finding added and removed part of changes with the highlighted colors.
+    Red color is used for showing removed parts and the green color for added parts of the site.
+    The result of the compare is saved to an HTML file for sending to the Telegram group via the Telegram Bot.
     """
     text11 = filtering(text1, url_dir)
     text22 = filtering(text2, url_dir)
@@ -210,7 +207,7 @@ def compare(text1, text2, url_dir, url):
             file_alert.write("<br></br>\n")
             file_alert.write(html_result)
     url_domain = urlparse(url).netloc
-    changes_file = "https://defacement.sadad.co.ir/" + url_domain + urlparse(url).path.replace("/", "_") + "/" + unique_file_name + ".html"
+    changes_file = "https://PUT-YOUR-DOMAIN-HERE/" + url_domain + urlparse(url).path.replace("/", "_") + "/" + unique_file_name + ".html"
     msg = url + "\n\n" + changes_file
     send_message_for_defacement(msg)
     return
