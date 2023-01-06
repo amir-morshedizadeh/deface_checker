@@ -1,28 +1,30 @@
 # deface_checker
 
-A tool for checking integrity of the site in order to monitor any defacement or unauthorized changes in the main or landing page of your sites.
+A tool for checking the integrity of your sites(the main or landing page of your site) in order to monitor for any possible defacement or unauthorized changes in the code.
 
 ## How it works?
 
-* It sends a request to the URL then saves the response in “page.txt”
-*	After reaching to the end of URLs in “urls.txt”, it would send a request again and saves the response in the memory.
+* It sends a request to the url then saves the response in “page.txt” file.
+*	After reaching to the end of urls in “urls.txt”, it sends a request again then saves the response in the memory.
 *	Both responses are compared using “diff-match-patch” library created by Google.
-*	If any changes like adding or removing tags, strings and …, are detected between these responses, it makes an HTML file with added and removed parts with highlighted colors.
-*	The code sends the generated HTML file via a Telegram Bot (or Bale Bot) to a Telegram group.
-*	Admins are joined to the group and could check the HTML file for any changes within the site.
+*	If any changes like adding or removing tags, strings and whatever are detected between these responses, it then makes an HTML file with added and removed parts with highlighted colors.
+*	It sends the generated HTML file via a Telegram Bot (or Bale Bot) to a Telegram/Bale group for SOC team to analyze the event.
 
 ## Steps to run
 
-*	Create a “urls.txt” file within the “c:\output2” or change the folder within the code.
-*	Create a Telegram bot and a Telegram group and add the information to the source code.
-*	Run the code
+*	Create and name a file as “urls.txt” to cover all your assets then put the file in the “base_dir” variable in the code.
+*	Create a Telegram bot and group then add them to the source code:
+###### Telegram:  [Telegram Bot](https://core.telegram.org/bots#how-do-i-create-a-bot)
+###### Bale:  [Bale Bot](https://dev.bale.ai/quick-start)
+*	Run the code and analyse receiving events. If required try to tune the recieving alert.
 
-## How to tune?
+## Why and how to tune?
 
-For every site there could be a "whitelist_.txt" file inside the created folder for each site.
-It is used for minimizing false positives before sending pages to compare.
-For example, response of a server may contain a VIEWSTATE value for every response, so we need to remove VIEWSTATE value before comparing for a more reliable result.
-Any html tag or content could be added to this file to improve the result.
+Consider a web server's response that contains a VIEWSTATE value in every response. So we need to remove the VIEWSTATE value to provide more reliable alerts for security analysts.
+For every site there could be a "whitelist_.txt" file inside the created directory for each site.
+It is used for minimizing false positive alerts by defining some exceptions in the "whitelist_.txt".
+
+Any html tag or content could be added to this file.
 
 
 ## There are 4 different types of defining exceptions in the "whitelist_.txt" file:
